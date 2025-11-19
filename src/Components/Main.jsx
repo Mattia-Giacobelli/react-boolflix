@@ -35,6 +35,24 @@ export default function Main() {
                         Search
                     </button>
                 </div>
+
+                <div className="row">
+                    {searchedMovies.map(movie => {
+                        return (
+                            <div key={movie.id} className="col-3">
+                                <div className="card">
+                                    {/* <img className="card-img-top" src={`${movie.poster_path}`} alt="movie-img" /> */}
+                                    <div className="card-body">
+                                        <h5 className="card-title">{movie.name}</h5>
+                                        <h5 className="card-title">{movie.original_name}</h5>
+                                        <p className="card-text">{movie.original_language}</p>
+                                        <p className="card-text">{movie.vote_average}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        )
+                    })}
+                </div>
             </div>
         </main>
     )
