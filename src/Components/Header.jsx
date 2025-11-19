@@ -5,7 +5,7 @@ export default function Header() {
 
     return (
         <header>
-            <div className="container-fluid searchbar">
+            <div className="searchbar">
                 <h1 >
                     BoolFlix
                 </h1>

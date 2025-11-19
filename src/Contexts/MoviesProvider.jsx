@@ -44,8 +44,9 @@ function MoviesProvider({ children }) {
         fetch(`https://api.themoviedb.org/3/search/tv?api_key=${movieApiKey}&language=it_IT&query=${searchInput}`)
             .then((res) => res.json())
             .then((res) => {
-                console.log(res);
+                console.log(Math.ceil(res.results[0].vote_average));
                 setTvSeries(res.results)
+
             })
 
 

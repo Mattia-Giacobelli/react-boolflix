@@ -1,12 +1,16 @@
-@import url('bootstrap');
 @import url('bootstrap-icons');
 
-
+/*Reset*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 /*Header*/
 header {
   background-color: black;
-
+  padding: 0.5rem;
 
   /*Searchbar*/
 
@@ -27,7 +31,7 @@ header {
         border-top-right-radius: 0;
         border-bottom-right-radius: 0;
         padding-left: 0.5rem;
-        padding-bottom: 0.2rem;
+        padding: 0.2rem;
 
         &:focus {
           border: none;
@@ -42,7 +46,8 @@ header {
         border-top-left-radius: 0;
         border-bottom-left-radius: 0;
         background-color: lightgray;
-        padding-bottom: 0.2rem;
+        padding: 0.2rem;
+        padding-right: 0.3rem;
       }
     }
   }
@@ -50,15 +55,22 @@ header {
 
 
 
-/*Card*/
+/*MAIN*/
 
-.card {
+main {
 
-  .language-ico {
-    height: 10px;
-  }
+  /*Card*/
 
-  .stars {
-    font-size: 0.5rem;
+  .card {
+
+    .language-ico {
+      height: 10px;
+    }
+
+    .language-txt {}
+
+    .stars {
+      font-size: 0.5rem;
+    }
   }
 }

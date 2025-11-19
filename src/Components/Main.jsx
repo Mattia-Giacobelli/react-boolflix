@@ -40,11 +40,11 @@ export default function Main() {
                                 <div className="card">
                                     <img className="card-img-top" src={`https://image.tmdb.org/t/p/w342/${movie.poster_path}`} alt="movie-img" />
                                     <div className="card-body">
-                                        <h5 className="card-title">{movie.title}</h5>
-                                        <h6 className="card-title">{movie.original_title}</h6>
+                                        <h5 className="card-title">{movie.title || movie.name}</h5>
+                                        <h6 className="card-title">{movie.original_title || movie.original_name}</h6>
                                         {flags[movie.original_language] ?
                                             <img className="language-ico" src={flags[movie.original_language]} alt="" /> :
-                                            <p className="card-text">{movie.original_language}</p>
+                                            <p className="card-text language-txt">{movie.original_language}</p>
                                         }
                                         <p className="card-text stars">
                                             {voteToStar(movie.vote_average)}
