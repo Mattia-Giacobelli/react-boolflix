@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
-import
-import FilmAndTvSeries from "./Pages/FilmAndTvSeries"
+import MoviesAndTvSeries from "./Pages/MoviesAndTvSeries"
+import { MoviesProvider } from "./Contexts/MoviesProvider"
+
 
 
 function App() {
@@ -8,11 +9,13 @@ function App() {
 
   return (
     <>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<FilmAndTvSeries />} />
-        </Routes>
-      </BrowserRouter>
+      <MoviesProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<MoviesAndTvSeries />} />
+          </Routes>
+        </BrowserRouter>
+      </MoviesProvider>
     </>
   )
 }
