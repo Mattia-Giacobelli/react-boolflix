@@ -63,7 +63,10 @@ export default function Main() {
                                     <div className="card-body">
                                         <h5 className="card-title">{movie.title}</h5>
                                         <h6 className="card-title">{movie.original_title}</h6>
-                                        <img className="language-ico" src={flags[movie.original_language]} alt="" />
+                                        {flags[movie.original_language] ?
+                                            <img className="language-ico" src={flags[movie.original_language]} alt="" /> :
+                                            <p className="card-text">{movie.original_language}</p>
+                                        }
                                         <p className="card-text">{movie.vote_average}</p>
                                     </div>
                                 </div>
