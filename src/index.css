@@ -1,2 +1,14 @@
 @import url('bootstrap');
 @import url('bootstrap-icons');
+
+
+
+
+/*Card*/
+
+.card {
+
+  .language-ico {
+    height: 10px;
+  }
+}
