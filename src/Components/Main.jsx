@@ -38,7 +38,9 @@ export default function Main() {
                         return (
                             <div key={movie.id} className="col-3">
                                 <div className="card">
-                                    <img className="card-img-top" src={`https://image.tmdb.org/t/p/w342/${movie.poster_path}`} alt="movie-img" />
+                                    <div className="img-container">
+                                        <img className="card-img" src={`https://image.tmdb.org/t/p/w342/${movie.poster_path}`} alt="movie-img" />
+                                    </div>
                                     <div className="card-body">
                                         <h5 className="card-title">{movie.title || movie.name}</h5>
                                         <h6 className="card-title">{movie.original_title || movie.original_name}</h6>

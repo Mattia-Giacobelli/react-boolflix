@@ -7,6 +7,30 @@
   box-sizing: border-box;
 }
 
+/*Utilities*/
+
+
+.container {
+  margin: 0 auto;
+  max-width: 1024px;
+}
+
+
+/*Grid utilities*/
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 0 -1.5rem;
+  justify-content: space-between;
+}
+
+.col-3 {
+  width: calc(100% / 4 - 1rem);
+}
+
+
 /*Header*/
 header {
   background-color: black;
@@ -58,19 +82,53 @@ header {
 /*MAIN*/
 
 main {
+  background-color: black;
 
   /*Card*/
 
   .card {
+    position: relative;
 
-    .language-ico {
-      height: 10px;
+    .img-container {
+      .card-img {
+        width: 100%;
+        object-fit: fill;
+
+      }
     }
 
-    .language-txt {}
+    .card-body {
+      color: white;
+      position: absolute;
+      top: 1rem;
+      bottom: 1rem;
+      left: 2rem;
+      right: 1rem;
+      display: none;
 
-    .stars {
-      font-size: 0.5rem;
+
+      .language-ico {
+        height: 10px;
+      }
+
+      .language-txt {}
+
+      .stars {
+        font-size: 0.5rem;
+      }
     }
+
+    &:hover {
+      border: 5px solid white;
+
+      .img-container {
+        display: none;
+      }
+
+      .card-body {
+        display: block;
+      }
+    }
+
   }
 }
