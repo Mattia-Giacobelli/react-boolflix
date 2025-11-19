@@ -38,6 +38,15 @@ export default function Main() {
         setSearched([...movies, ...tvSeries])
     }
 
+    function voteToStar(maxNumber) {
+        const vote = Math.ceil(maxNumber / 2)
+        let stars = ''
+        for (let i = 0; i <= vote; i++) {
+            stars += '⭐'
+        }
+        return stars
+    }
+
     useEffect(getSearchedItems, [movies, tvSeries])
 
     return (
@@ -59,7 +68,7 @@ export default function Main() {
                         return (
                             <div key={movie.id} className="col-3">
                                 <div className="card">
-                                    {/* <img className="card-img-top" src={`${movie.poster_path}`} alt="movie-img" /> */}
+                                    <img className="card-img-top" src={`https://image.tmdb.org/t/p/w342/${movie.poster_path}`} alt="movie-img" />
                                     <div className="card-body">
                                         <h5 className="card-title">{movie.title}</h5>
                                         <h6 className="card-title">{movie.original_title}</h6>
@@ -67,7 +76,9 @@ export default function Main() {
                                             <img className="language-ico" src={flags[movie.original_language]} alt="" /> :
                                             <p className="card-text">{movie.original_language}</p>
                                         }
-                                        <p className="card-text">{movie.vote_average}</p>
+                                        <p className="card-text stars">
+                                            {voteToStar(movie.vote_average)}
+                                        </p>
                                     </div>
                                 </div>
                             </div>
