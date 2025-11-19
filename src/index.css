@@ -3,6 +3,52 @@
 
 
 
+/*Header*/
+header {
+  background-color: black;
+
+
+  /*Searchbar*/
+
+  .searchbar {
+    color: red;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+
+    .search {
+      font-size: 1rem;
+
+      .my-input {
+        border: 1px solid black;
+        border-right: none;
+        border-radius: 1rem;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+        padding-left: 0.5rem;
+        padding-bottom: 0.2rem;
+
+        &:focus {
+          border: none;
+          outline: none;
+
+        }
+      }
+
+      .my-btn {
+        border: 1px solid black;
+        border-radius: 1rem;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        background-color: lightgray;
+        padding-bottom: 0.2rem;
+      }
+    }
+  }
+}
+
+
 
 /*Card*/
 

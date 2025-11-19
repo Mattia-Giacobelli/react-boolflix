@@ -7,31 +7,10 @@ export default function Main() {
         flags, tvSeries, setTvSeries, movies, setMovies
     } = useMovies()
 
-    const movieApiKey = import.meta.env.VITE_MOVIE_API_KEY
+
 
     console.log(flags);
 
-
-
-    function getMoviesAndTv() {
-
-        fetch(`https://api.themoviedb.org/3/search/movie?api_key=${movieApiKey}&language=it_IT&query=${searchInput}`)
-            .then((res) => res.json())
-            .then((res) => {
-                console.log(res);
-                setMovies(res.results)
-            })
-
-
-        fetch(`https://api.themoviedb.org/3/search/tv?api_key=${movieApiKey}&language=it_IT&query=${searchInput}`)
-            .then((res) => res.json())
-            .then((res) => {
-                console.log(res);
-                setTvSeries(res.results)
-            })
-
-
-    }
 
     function getSearchedItems() {
 
@@ -52,15 +31,6 @@ export default function Main() {
     return (
         <main>
             <div className="container">
-                <div className="input-group mb-3">
-                    <input value={searchInput} onChange={e => setSearchInput(e.target.value)}
-                        type="text" className="form-control" placeholder="Search movies by title" aria-label="Search movies by title"
-                        aria-describedby="button-addon2" />
-                    <button onClick={getMoviesAndTv}
-                        className="btn btn-outline-secondary" type="button" id="button-addon2">
-                        Search
-                    </button>
-                </div>
 
                 <div className="row">
                     {searched.map(movie => {

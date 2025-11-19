@@ -9,12 +9,14 @@ const MoviesContext = createContext()
 
 function MoviesProvider({ children }) {
 
+    //Create varibles to store data
     const [movies, setMovies] = useState([])
     const [tvSeries, setTvSeries] = useState([])
     const [searched, setSearched] = useState([])
     const [searchInput, setSearchInput] = useState('')
 
-    //Create object with flag emoji for each language
+
+    //Create object with a flag for each language
     const flags = {
         en: uk,
         it: it,
@@ -23,12 +25,38 @@ function MoviesProvider({ children }) {
         de: de,
     }
 
+    //API key
+    const movieApiKey = import.meta.env.VITE_MOVIE_API_KEY
+
+    //Create function to fetch movies and tvSeries data
+    function getMoviesAndTv(e) {
+
+        e.preventDefault()
+
+        fetch(`https://api.themoviedb.org/3/search/movie?api_key=${movieApiKey}&language=it_IT&query=${searchInput}`)
+            .then((res) => res.json())
+            .then((res) => {
+                console.log(res);
+                setMovies(res.results)
+            })
+
+
+        fetch(`https://api.themoviedb.org/3/search/tv?api_key=${movieApiKey}&language=it_IT&query=${searchInput}`)
+            .then((res) => res.json())
+            .then((res) => {
+                console.log(res);
+                setTvSeries(res.results)
+            })
+
+
+    }
+
     return (
         <MoviesContext.Provider
             value={{
                 movies, setMovies, searchInput, setSearchInput,
                 searched, setSearched, flags,
-                tvSeries, setTvSeries
+                tvSeries, setTvSeries, getMoviesAndTv
             }
             }>
             {children}
