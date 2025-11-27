@@ -17,7 +17,10 @@ function MoviesProvider({ children }) {
     const [cast, setCast] = useState([])
     const [id, setId] = useState(null)
     const [castString, setCastString] = useState('')
-    const [movieOrTV, setMovieOrTV] = useState(false)
+    const [movieOrTV, setMovieOrTV] = useState('Movie/TV filter')
+    const [genres, setGenres] = useState([])
+    const [selectedGenre, setselectedGenre] = useState(0)
+    const [genreFiltered, setGenreFiltered] = useState([])
 
 
 
@@ -58,60 +61,67 @@ function MoviesProvider({ children }) {
     }
 
     //Get cast members
-    function fetchFilmCast() {
+    function fetchFilmCast(id) {
 
         fetch(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=${movieApiKey}`)
             .then((res) => res.json())
             .then((res) => {
                 const castList = []
+                console.log(res, '👍');
                 for (let i = 0; i < 5; i++) {
-                    console.log(res);
 
-                    const actor = res.results.cast[i];
-                    cast.push(actor)
+                    const actor = res.cast[i]?.name;
+                    console.log(actor, '👌');
+
+                    castList.push(actor)
 
                 }
+                console.log(castList);
                 setCast(castList)
             })
 
 
     }
 
-    function fetchTVCast() {
+    function fetchTVCast(id) {
 
         fetch(`https://api.themoviedb.org/3/tv/${id}/credits?api_key=${movieApiKey}`)
             .then((res) => res.json())
             .then((res) => {
                 const castList = []
                 for (let i = 0; i < 5; i++) {
-                    const actor = res.results.cast[i];
-                    cast.push(actor)
+                    const actor = res.cast[i]?.name;
+                    castList.push(actor)
 
                 }
+                console.log(castList);
+
                 setCast(castList)
             })
 
 
     }
 
-    function castToString() {
+    function fetchGenres() {
 
-        console.log(id);
+        if (movieOrTV === 'movie') {
 
-        if (movieOrTV) {
-            fetchFilmCast
+            fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${movieApiKey}&language=it_IT`)
+                .then((res) => res.json())
+                .then((res) => {
+                    console.log(res.genres);
+                    setGenres(res.genres)
+                })
 
-        } else {
-
-            fetchTVCast
+        } else if (movieOrTV === 'TV') {
+            fetch(`https://api.themoviedb.org/3/genre/tv/list?api_key=${movieApiKey}&language=it_IT`)
+                .then((res) => res.json())
+                .then((res) => {
+                    console.log(res.genres);
+                    setGenres(res.genres)
+                })
         }
-        const string = cast.join(',')
-        setCastString(string)
-
     }
-
-    useEffect(castToString, [id])
-
 
     return (
         <MoviesContext.Provider
@@ -120,7 +130,9 @@ function MoviesProvider({ children }) {
                 searched, setSearched, flags,
                 tvSeries, setTvSeries, getMoviesAndTv,
                 fetchFilmCast, fetchTVCast, cast,
-                id, setId, castString, setCastString, movieOrTV, setMovieOrTV
+                id, setId, castString, setCastString, movieOrTV, setMovieOrTV,
+                fetchGenres, genres, genreFiltered, setGenreFiltered,
+                selectedGenre, setselectedGenre
             }
             }>
             {children}

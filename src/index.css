@@ -73,6 +73,8 @@ header {
         padding: 0.2rem;
         padding-right: 0.3rem;
       }
+
+
     }
   }
 }
@@ -122,6 +124,11 @@ main {
 
       .stars {
         font-size: 0.5rem;
+        color: yellow;
+      }
+
+      .cast {
+        font-size: 0.6rem;
       }
     }
 
