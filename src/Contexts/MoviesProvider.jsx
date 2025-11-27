@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 import uk from '../assets/img/uk.png'
 import it from '../assets/img/it.png'
 import fr from '../assets/img/fr.png'
@@ -14,6 +14,11 @@ function MoviesProvider({ children }) {
     const [tvSeries, setTvSeries] = useState([])
     const [searched, setSearched] = useState([])
     const [searchInput, setSearchInput] = useState('')
+    const [cast, setCast] = useState([])
+    const [id, setId] = useState(null)
+    const [castString, setCastString] = useState('')
+    const [movieOrTV, setMovieOrTV] = useState(false)
+
 
 
     //Create object with a flag for each language
@@ -52,12 +57,70 @@ function MoviesProvider({ children }) {
 
     }
 
+    //Get cast members
+    function fetchFilmCast() {
+
+        fetch(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=${movieApiKey}`)
+            .then((res) => res.json())
+            .then((res) => {
+                const castList = []
+                for (let i = 0; i < 5; i++) {
+                    console.log(res);
+
+                    const actor = res.results.cast[i];
+                    cast.push(actor)
+
+                }
+                setCast(castList)
+            })
+
+
+    }
+
+    function fetchTVCast() {
+
+        fetch(`https://api.themoviedb.org/3/tv/${id}/credits?api_key=${movieApiKey}`)
+            .then((res) => res.json())
+            .then((res) => {
+                const castList = []
+                for (let i = 0; i < 5; i++) {
+                    const actor = res.results.cast[i];
+                    cast.push(actor)
+
+                }
+                setCast(castList)
+            })
+
+
+    }
+
+    function castToString() {
+
+        console.log(id);
+
+        if (movieOrTV) {
+            fetchFilmCast
+
+        } else {
+
+            fetchTVCast
+        }
+        const string = cast.join(',')
+        setCastString(string)
+
+    }
+
+    useEffect(castToString, [id])
+
+
     return (
         <MoviesContext.Provider
             value={{
                 movies, setMovies, searchInput, setSearchInput,
                 searched, setSearched, flags,
-                tvSeries, setTvSeries, getMoviesAndTv
+                tvSeries, setTvSeries, getMoviesAndTv,
+                fetchFilmCast, fetchTVCast, cast,
+                id, setId, castString, setCastString, movieOrTV, setMovieOrTV
             }
             }>
             {children}

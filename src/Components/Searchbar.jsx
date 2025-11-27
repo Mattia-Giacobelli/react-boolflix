@@ -14,7 +14,7 @@ export default function SearchBar() {
                     type="text" className="my-input" placeholder="Search movies by title" />
                 <button
                     className="my-btn" type="submit">
-                    <i class="bi bi-search"></i>
+                    <i className="bi bi-search"></i>
                 </button>
             </form>
         </div>
