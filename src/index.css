@@ -87,6 +87,8 @@ header {
 main {
   background-color: black;
 
+  position: relative;
+
   /*Card*/
 
   .card {
@@ -147,6 +149,14 @@ main {
         display: block;
       }
     }
+
+  }
+
+  .portfolio {
+
+    position: fixed;
+    left: 50px;
+    bottom: 50px;
 
   }
 }

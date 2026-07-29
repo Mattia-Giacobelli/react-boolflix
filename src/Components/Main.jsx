@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useMovies } from "../Contexts/MoviesProvider";
+import { Link } from "react-router-dom";
 
 export default function Main() {
 
@@ -173,6 +174,9 @@ export default function Main() {
                     })}
                 </div>
             </div>
+
+            <Link className="portfolio btn btn-outline-danger" to={"https://portfolio-supabase.giacobelli-mattia12.workers.dev/projects/4"}>Portfolio</Link>
+
         </main>
     )
 }
