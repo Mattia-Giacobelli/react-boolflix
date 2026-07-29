@@ -130,7 +130,9 @@ export default function Main() {
                 </form>
 
                 <div className="row">
+                    {console.log(genreFiltered)}
                     {genreFiltered.map(movie => {
+                        console.log(movie);
 
                         return (
                             <div key={movie.id} className="col-3">
